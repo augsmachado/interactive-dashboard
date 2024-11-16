@@ -1,10 +1,10 @@
 ### Create and start a virtual environment
 create-venv:
-	python3 -m venv .venv && \
-	source .venv/bin/activate
+	python3 -m venv venv && \
+	source venv/bin/activate
 
 start-venv:
-	source .venv/bin/activate
+	source venv/bin/activate
 
 ### Installing the dependencies in your machine
 install:
