@@ -3,6 +3,37 @@
 import reflex as rx
 
 
+class User(rx.Base):
+    """The user model."""
+    name: str
+    email: str
+    gender: str
+
+
+class State(rx.State):
+    users: list[User] = [
+        User(
+            name="Danilo Sousa",
+            email="danilo@example.com",
+            gender="Male"
+        ),
+        User(
+            name="Zahra Ambessa",
+            email="zahra@example.com",
+            gender="Female"
+        ),
+    ]
+
+
+def show_user(user: User):
+    """Show a person in a table row."""
+    return rx.table.row(
+        rx.table.cell(user.name),
+        rx.table.cell(user.email),
+        rx.table.cell(user.gender),
+    )
+
+
 def index() -> rx.Component:
     return rx.table.root(
         rx.table.header(
@@ -13,16 +44,7 @@ def index() -> rx.Component:
             ),
         ),
         rx.table.body(
-            rx.table.row(
-                rx.table.cell("Danilo Sousa"),
-                rx.table.cell("danilo@example.com"),
-                rx.table.cell("Male"),
-            ),
-            rx.table.row(
-                rx.table.cell("Zahra Ambessa"),
-                rx.table.cell("zahra@example.com"),
-                rx.table.cell("Female"),
-            ),
+            rx.foreach(State.users, show_user),
         ),
         variant="surface",
         size="3",
