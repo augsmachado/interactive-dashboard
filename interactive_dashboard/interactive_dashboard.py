@@ -4,7 +4,29 @@ import reflex as rx
 
 
 def index() -> rx.Component:
-    return rx.text("Hello World")
+    return rx.table.root(
+        rx.table.header(
+            rx.table.row(
+                rx.table.column_header_cell("Name"),
+                rx.table.column_header_cell("Email"),
+                rx.table.column_header_cell("Gender"),
+            ),
+        ),
+        rx.table.body(
+            rx.table.row(
+                rx.table.cell("Danilo Sousa"),
+                rx.table.cell("danilo@example.com"),
+                rx.table.cell("Male"),
+            ),
+            rx.table.row(
+                rx.table.cell("Zahra Ambessa"),
+                rx.table.cell("zahra@example.com"),
+                rx.table.cell("Female"),
+            ),
+        ),
+        variant="surface",
+        size="3",
+    )
 
 
 # Define app and the component we just defined (index) to a page using
